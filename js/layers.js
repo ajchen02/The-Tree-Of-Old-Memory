@@ -75,6 +75,7 @@ addLayer("c", {
             effect(){
                 let base =getBuyableAmount(this.layer,this.id).div(10)
                 let gain =new Decimal(1)
+                if(hasUpgrade(this.layer,11))base=base.add(upgradeEffect(this.layer,22))
                 if(hasUpgrade(this.layer,22))gain=gain.times(upgradeEffect(this.layer,22))
                 return base.times(gain)
             },
