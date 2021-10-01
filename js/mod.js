@@ -52,7 +52,7 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = ["Endgame: 100000 Points",
-                     function(){return format(player.points.add(1).div(100000).mul(100))+"% to endgame"}
+                     function(){return format(player.points.add(1).log(100000).mul(100))+"% to endgame"}
 ]
 
 // Determines when the game "ends"
