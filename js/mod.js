@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The Tree Of Gates",
 	id: "Old-Memory",
 	author: "ajchen",
-	pointsName: "bases",
+	pointsName: "Points",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
@@ -18,7 +18,7 @@ let VERSION = {
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>I don't use this</h3><br>`
+	<h3>I don't use this sorry</h3><br>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -40,8 +40,10 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
-	return gain
+	let base = new Decimal(0.1)
+	let coinAdds = buyableEffect('c',11).add(buyableEffect('c',12))
+	let secretBuff = player.points.root(2).add(1)
+	return base.times(secretBuff).add(coinAdds)
 }
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
@@ -49,12 +51,13 @@ function addedPlayerData() { return {
 }}
 
 // Display extra things at the top of the page
-var displayThings = [
+var displayThings = ["Endgame: 100000 Points",
+                     function(){return format(player.points.add(1).log(100000).mul(100))+"% to endgame"}
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("100000"))
 }
 
 
